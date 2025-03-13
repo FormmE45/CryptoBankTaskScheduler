@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	host     = "14.225.206.68"
-	port     = 5555
-	user     = "postgresql"
-	password = "CjZwTK1f03pY"
-	dbname   = "CryptoBank"
+	host     = ""
+	port     = 0
+	user     = ""
+	password = ""
+	dbname   = ""
 )
 
 func main() {
