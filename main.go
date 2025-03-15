@@ -1,13 +1,14 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"strconv"
 
-	_ "github.com/lib/pq"
-
+	SavingAccount "github.com/FormmE45/CryptoBankTaskScheduler/entity"
 	service "github.com/FormmE45/CryptoBankTaskScheduler/service"
+	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 type DBconfig struct {
@@ -30,18 +31,21 @@ func main() {
 
 	//Open a connection to DB
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", dbConfig.host, dbConfig.port, dbConfig.user, dbConfig.password, dbConfig.dbname)
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		panic(err)
-	}
+	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
+	service.Check(err)
 
-	defer db.Close()
+	sqlDB, err := db.DB()
+	service.Check(err)
+
+	defer sqlDB.Close()
 
 	//Ping DB
-	err = db.Ping()
+	err = sqlDB.Ping()
 	if err != nil {
 		panic(err)
 	}
+
+	var saving_account SavingAccount
 
 	fmt.Println("Successfully Connected")
 
