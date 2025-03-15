@@ -18,14 +18,6 @@ type DBconfig struct {
 	dbname   string
 }
 
-const (
-	host     = "14.225.206.68"
-	port     = 5555
-	user     = "postgresql"
-	password = "CjZwTK1f03pY"
-	dbname   = "CryptoBank"
-)
-
 func main() {
 
 	//Read file that hold DB configuration
