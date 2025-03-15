@@ -21,7 +21,3 @@ type SavingAccount struct {
 	name         string
 	uuid         uint
 }
-
-func main() {
-
-}
