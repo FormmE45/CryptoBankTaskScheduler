@@ -1,10 +1,7 @@
 package entity
 
 import (
-	"fmt"
 	"time"
-
-	"gorm.io/gorm"
 )
 
 type SavingAccount struct {
@@ -24,17 +21,9 @@ type SavingAccount struct {
 	GGDriveURL   string    `gorm:"column:gg_drive_url"`
 	HeirStatus   bool      `gorm:"column:heir_status"`
 	Name         string    `gorm:"column:name"`
-	UUID         uint      `gorm:"column:uuid_id"`
+	UUID         string    `gorm:"column:uuid_id"`
 }
 
 func (s SavingAccount) TableName() string {
 	return "saving_account"
-}
-
-func (s SavingAccount) GetFirstRow(db *gorm.DB, saving_account SavingAccount) *SavingAccount {
-	result := db.First(&saving_account)
-	if result.Error != nil {
-		fmt.Println(result.Error)
-	}
-	return &saving_account
 }

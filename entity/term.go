@@ -1,7 +1,7 @@
 package entity
 
 type Term struct {
-	ID          string `gorm:"primaryKey;column:id"`
+	ID          string `gorm:"column:id;primaryKey"`
 	AmountMonth int64
 	Type        string
 }
