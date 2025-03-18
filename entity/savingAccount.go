@@ -8,6 +8,7 @@ type SavingAccount struct {
 	ID           string    `gorm:"primaryKey;column:id"`
 	UserId       string    `gorm:"column:user_id"`
 	TermId       string    `gorm:"column:term_id"`
+	Term         Term      `gorm:"foreignKey:TermId"`
 	Note         string    `gorm:"column:note"`
 	StatusId     string    `gorm:"column:status_id"`
 	DeleteYN     bool      `gorm:"column:delete_yn"`
