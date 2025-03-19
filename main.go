@@ -16,14 +16,15 @@ func main() {
 	sqlDB, err := db.DB()
 	service.Check(err)
 	defer sqlDB.Close()
-
+	//Instantiate DAO object
 	accountDAO := repository.NewSavingAccountDAO(db)
 	accruedInterestDAO := repository.NewAccruedInterestDAO(db)
+	//Get Saving Account with Term Preload from database
 	s := accountDAO.GetSavingAccountAndPreloadTerm()
+	//Calculate on given SavingAccount
 	accruedInterestAmount := service.AccruedInterestCalculate(s)
-	accruedInterest := entity.NewAccruedInterest("3", s.ID, accruedInterestAmount)
+	//Instantiate new AccruedInterest Object
+	accruedInterest := entity.NewAccruedInterest("1", s.ID, accruedInterestAmount)
+	//Save on DB
 	accruedInterestDAO.SaveOnDB(accruedInterest)
-	// var term entity.Term
-	// db.First(&term)
-	// fmt.Println(term)
 }

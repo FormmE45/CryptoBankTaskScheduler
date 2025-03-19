@@ -19,7 +19,7 @@ type Repository struct {
 
 func OpenDBConnection() *gorm.DB {
 	//Init DBConfig file from file path
-	dbConfig := service.InitDBConfig(DBConfigPathfileServerTestLaptop)
+	dbConfig := service.InitDBConfig(DBConfigPathfileServerTest)
 	//Open a connection to DB using GORM
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", dbConfig.Host, dbConfig.Port, dbConfig.User, dbConfig.Password, dbConfig.Dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{
