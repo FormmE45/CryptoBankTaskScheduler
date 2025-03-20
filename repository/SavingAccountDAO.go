@@ -13,8 +13,8 @@ func NewSavingAccountDAO(db *gorm.DB) *SavingAccountDAO {
 	return &SavingAccountDAO{Db: db}
 }
 
-func (savingAccountDAO SavingAccountDAO) GetSavingAccountAndPreloadTerm() *entity.SavingAccount {
-	var saving_account entity.SavingAccount
-	savingAccountDAO.Db.Preload("Term").First(&saving_account)
-	return &saving_account
+func (savingAccountDAO SavingAccountDAO) GetAllSavingAccountAndPreloadTerm() *[]entity.SavingAccount {
+	var saving_accounts []entity.SavingAccount
+	savingAccountDAO.Db.Preload("Term").Find(&saving_accounts)
+	return &saving_accounts
 }
