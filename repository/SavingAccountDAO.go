@@ -15,6 +15,6 @@ func NewSavingAccountDAO(db *gorm.DB) *SavingAccountDAO {
 
 func (savingAccountDAO SavingAccountDAO) GetAllSavingAccountAndPreloadTerm() *[]entity.SavingAccount {
 	var saving_accounts []entity.SavingAccount
-	savingAccountDAO.Db.Preload("Term").Find(&saving_accounts)
+	savingAccountDAO.Db.Where("status_id = ?", "null").Preload("Term").Find(&saving_accounts)
 	return &saving_accounts
 }

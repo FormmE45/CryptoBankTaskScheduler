@@ -34,7 +34,8 @@ func (dao AccruedInterestDAO) SaveOnDB(accruedInterest *entity.AccruedInterest) 
 func (dao AccruedInterestDAO) CheckAccruedInterestDayLeftIfZero() {
 	var matchingZeroDay []entity.AccruedInterest
 	dao.DB.Model(&entity.AccruedInterest{}).Where("day_left = ?", 0).Preload("Account").Find(&matchingZeroDay)
-	for _,accruedInterest:=range matchingZeroDay{
-		accruedInterest.
+	for _, accruedInterest := range matchingZeroDay {
+		dao.DB.Model(&accruedInterest.Account).Update("status_id", "1")
+		dao.DB.Model(&accruedInterest).Update("deleted_yn", true)
 	}
 }

@@ -48,4 +48,5 @@ func fromDateToDate(start time.Time, end time.Time) uint32 {
 
 func managedIfDueDate(accruedInterestDAO repository.AccruedInterestDAO) {
 	accruedInterestDAO.CheckAccruedInterestDayLeftIfZero()
+
 }
